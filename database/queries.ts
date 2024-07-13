@@ -13,22 +13,32 @@ export const getUsersInsecure = cache(async () => {
 });
 
 export const createUserInsecure = cache(
-  async (firstName: string, lastName: string, imageUrl: string) => {
+  async (
+    firstName: string,
+    lastName: string,
+    imageUrl: string,
+    uploadType: string,
+  ) => {
     const [user] = await sql<User[]>`
       INSERT INTO
         users (
           first_name,
           last_name,
-          image_url
+          image_url,
+          type
         )
       VALUES
         (
           ${firstName},
           ${lastName},
-          ${imageUrl}
+          ${imageUrl},
+          ${uploadType}
         )
       RETURNING
-        users.*
+        users.first_name,
+        users.last_name,
+        users.image_url,
+        users.type
     `;
     return user;
   },
