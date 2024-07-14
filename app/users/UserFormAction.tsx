@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { SubmitButton } from '../Components/SubmitButton';
 import ErrorMessage from '../ErrorMessage';
@@ -26,10 +26,12 @@ export default function UserFormAction({
 
   const router = useRouter();
 
-  if (state && 'user' in state) {
-    router.refresh();
-    setSuccessMessage('Registration successful');
-  }
+  useEffect(() => {
+    if (state && 'user' in state) {
+      setSuccessMessage('User created successfully');
+      router.refresh();
+    }
+  }, [state?.user]);
 
   return (
     <div>
