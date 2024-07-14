@@ -13,19 +13,19 @@ cloudinary.config({
 export async function cloudinaryUpload(formData: FormData, folder: string) {
   const file = formData.get('image') as File;
   if (!file) {
-    return { message: 'No image selected' };
-  }
-
-  if (!file.type.startsWith('image/')) {
-    return { message: 'File is not an image' };
-  }
-
-  if (file.size > 1024 * 1024 * 5) {
-    return { message: 'Image is too large' };
+    return { error: 'No image selected' };
   }
 
   if (!file.name) {
-    return { message: 'Image name is missing' };
+    return { error: 'Please select an image' };
+  }
+
+  if (!file.type?.startsWith('image/')) {
+    return { error: 'File is not an image' };
+  }
+
+  if (file.size > 1024 * 1024 * 5) {
+    return { error: 'Image is too large' };
   }
 
   const arrayBuffer = await file.arrayBuffer();
@@ -57,11 +57,11 @@ export async function cloudinaryUpload(formData: FormData, folder: string) {
     Array.isArray(response) ||
     !response.secure_url
   ) {
-    return { message: 'Image upload failed' };
+    return { error: 'Image upload failed' };
   }
 
   return {
-    message: 'Image uploaded successfully',
+    error: 'Image uploaded successfully',
     imageUrl: response.secure_url,
   };
 }

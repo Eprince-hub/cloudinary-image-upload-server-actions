@@ -23,14 +23,14 @@ export default function ImageFormApi({
 
     if (!response.ok) {
       const errorData = await response.json();
-      setErrorMessage(errorData.message);
+      setErrorMessage(errorData.error);
       return;
     }
 
     const data = await response.json();
 
-    if (data.message) {
-      setErrorMessage(data.message);
+    if (data.error) {
+      setErrorMessage(data.error);
       return;
     }
 

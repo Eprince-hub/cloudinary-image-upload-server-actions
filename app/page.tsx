@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { getImagesInsecure, getUsersInsecure } from '../database/queries';
-import { uploadImage } from './images/action';
 import ImageFormAction from './images/ImageFormAction';
 import ImageFormApi from './images/ImageFormApi';
 import UserFormApi from './users/UserFormApi';
@@ -41,7 +40,6 @@ export default async function Home() {
           <ImageFormAction
             formTitle="Only image with server action"
             buttonTitle="Server Action Upload"
-            imageFormAction={uploadImage}
           />
 
           <ImageFormApi

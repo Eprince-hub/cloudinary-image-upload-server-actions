@@ -1,22 +1,40 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { useFormState } from 'react-dom';
+import { SubmitButton } from '../Components/SubmitButton';
+import ErrorMessage from '../ErrorMessage';
+import { uploadImage } from './action';
+
 export default function ImageFormAction({
-  imageFormAction,
   buttonTitle,
   formTitle,
 }: {
-  imageFormAction: (
-    formData: FormData,
-  ) => Promise<{ message: string } | undefined>;
   buttonTitle: string;
   formTitle: string;
 }) {
+  const [successMessage, setSuccessMessage] = useState('');
+  const [fileData, setFileData] = useState<Blob>();
+
+  const [state, formAction] = useFormState(
+    (state: { error: string } | null | undefined, formData: FormData) =>
+      uploadImage(formData),
+    null,
+  );
+
+  useEffect(() => {
+    if (state === undefined) {
+      setSuccessMessage('Image uploaded successfully');
+    }
+  }, [state]);
+
   return (
     <div>
+      {successMessage && <p className="text-green-600">{successMessage}</p>}
       <strong className="block mb-6">{formTitle}</strong>
       <form
         // It can also be done with the action prop
-        // action={imageFormAction}
+        // action={formAction}
         className="flex flex-col justify-center gap-6 max-w-sm mx-auto"
       >
         <label>
@@ -26,16 +44,29 @@ export default function ImageFormAction({
             type="file"
             name="image"
             accept="image/*"
+            onChange={(event) => {
+              if (event.target.files) {
+                setFileData(event.currentTarget.files?.[0]);
+              }
+            }}
           />
         </label>
-        <button
-          formAction={imageFormAction}
-          type="submit"
-          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        >
-          {buttonTitle}
-        </button>
+        {/* <SubmitButton buttonTitle={buttonTitle} formAction={uploadImage} /> */}
+        <SubmitButton
+          buttonTitle={buttonTitle}
+          formAction={() => {
+            const formData = new FormData();
+            if (fileData) {
+              formData.append('image', fileData);
+            }
+
+            formAction(formData);
+          }}
+        />
       </form>
+      {state && 'error' in state && state.error ? (
+        <ErrorMessage>{state.error}</ErrorMessage>
+      ) : null}
     </div>
   );
 }
