@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# Cloudinary Image Upload Examples in Next.js
+
+This repository contains examples of how to upload images to Cloudinary in a Next.js application. The examples are based on the [Cloudinary documentation](https://cloudinary.com/documentation/upload_images) and the [Next.js documentation](https://nextjs.org/docs). The examples are written in TypeScript and it shows how you can upload images to Cloudinary using both `server action` and `API Route`.
+
+## Technologies
+
+- Next.js
+- TypeScript
+- Cloudinary
+- Tailwind CSS
+- Database: PostgreSQL
+- Migrations: Ley
+
+## Features
+
+- Upload image to Cloudinary using `server action`
+- Upload image to Cloudinary using `API Route`
+- Create user profile with image using `server action`
+- Create user profile with image using `API Route`
+- Return data from the `server action` and access the data in the client
+- Error handling in the `server action` and displaying the error message in the client
+- Display the uploaded image in the client
+- Display the user profile with image in the client
 
 ## Getting Started
 
-First, run the development server:
+### Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Eprince-hub/cloudinary-image-upload-example.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Change the directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd cloudinary-image-upload-example
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Install the dependencies
 
-## Learn More
+```bash
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Create a `.env` file in the root directory
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+touch .env
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Add the following environment variables to the `.env` file: reference the `.env.example` file
 
-## Deploy on Vercel
+```bash
+PGHOST=localhost
+PGDATABASE=your_database_name
+PGUSERNAME=your_database_username
+PGPASSWORD=your_database_password
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Run the migrations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm migrate up
+```
+
+### Start the development server
+
+```bash
+pnpm dev
+```
+
+### Open your browser and visit `http://localhost:3000`
+
+### Resources
+
+- [Cloudinary](https://cloudinary.com/documentation/upload_images)
+- [Next.js](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [PostgreSQL](https://www.postgresql.org/docs/)
+- [Cloudinary and Next.js Server action](https://cloudinary.com/documentation/upload_assets_with_server_actions_nextjs_tutorial)
+- [TypeScript](https://www.typescriptlang.org/docs/)
+- [Ley](https://github.com/lukeed/ley)
+- [Node.js](https://nodejs.org/en/docs/)
+- [React](https://react.dev/)
+- [Vercel](https://vercel.com/docs)
+- [pnpm](https://pnpm.io/)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
