@@ -1,6 +1,5 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { createImageInsecure } from '../../database/queries';
 import { cloudinaryUpload } from '../../util/cloudinaryUpload';
 
@@ -23,13 +22,11 @@ export async function uploadImage(formData: FormData) {
     //   return { error: 'Image upload failed' };
     // }
 
-    // To access the image value on the client side, you can use the following code:
-    // you can return the image
-    // return image;
-    // we dont want to do that because our image data is coming from the database
-
     // revalidate the home page to display the new image that is returned from the database
-    revalidatePath('/');
+    // revalidatePath('/');
+
+    // You can also return the image and use router.refresh to revalidate from the client component
+    return { image };
   } catch (uploadError) {
     return { error: (uploadError as Error).message };
   }

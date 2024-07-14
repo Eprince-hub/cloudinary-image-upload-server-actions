@@ -1,10 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
+import { Image } from '../../migrations/00001-createTableImages';
 import { SubmitButton } from '../Components/SubmitButton';
 import ErrorMessage from '../ErrorMessage';
 import { uploadImage } from './action';
+
+type ImageFormActionProps = { image: Image } | { error: string } | null;
 
 export default function ImageFormAction({
   buttonTitle,
@@ -16,14 +20,16 @@ export default function ImageFormAction({
   const [successMessage, setSuccessMessage] = useState('');
   const [fileData, setFileData] = useState<Blob>();
 
+  const router = useRouter();
+
   const [state, formAction] = useFormState(
-    (state: { error: string } | null | undefined, formData: FormData) =>
-      uploadImage(formData),
+    (state: ImageFormActionProps, formData: FormData) => uploadImage(formData),
     null,
   );
 
   useEffect(() => {
-    if (state === undefined) {
+    if (state?.image) {
+      router.refresh();
       setSuccessMessage('Image uploaded successfully');
     }
   }, [state]);

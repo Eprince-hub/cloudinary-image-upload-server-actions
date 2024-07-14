@@ -11,7 +11,7 @@ export type UserRegisterPost =
       user: Omit<User, 'id'>;
     }
   | {
-      message: string;
+      error: string;
     };
 
 export async function POST(
@@ -21,13 +21,13 @@ export async function POST(
     const formData = await request.formData();
 
     if (!formData) {
-      return NextResponse.json({ message: 'Missing required Data' });
+      return NextResponse.json({ error: 'Missing required Data' });
     }
 
     const response = await cloudinaryUpload(formData, 'server-action-images');
 
     if (!response || !response.imageUrl) {
-      return NextResponse.json({ message: 'Image upload failed' });
+      return NextResponse.json({ error: 'Image upload failed' });
     }
 
     const body = {
@@ -40,7 +40,7 @@ export async function POST(
 
     if (!result.success) {
       return NextResponse.json({
-        message: JSON.stringify(result.error.issues),
+        error: JSON.stringify(result.error.issues),
       });
     }
 
@@ -52,13 +52,13 @@ export async function POST(
     );
 
     if (!user) {
-      return NextResponse.json({ message: 'User creation failed' });
+      return NextResponse.json({ error: 'User creation failed' });
     }
 
     return NextResponse.json({ user });
   } catch (error) {
     return NextResponse.json({
-      message: 'Image upload failed',
+      error: 'Image upload failed',
     });
   }
 }
