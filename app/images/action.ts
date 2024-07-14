@@ -4,6 +4,10 @@ import { createImageInsecure } from '../../database/queries';
 import { cloudinaryUpload } from '../../util/cloudinaryUpload';
 
 export async function uploadImage(formData: FormData) {
+  if (!formData.has('image')) {
+    return { error: 'No image selected' };
+  }
+
   try {
     const response = await cloudinaryUpload(formData, 'server-action-images');
 
@@ -18,9 +22,9 @@ export async function uploadImage(formData: FormData) {
     }
 
     // Line 15 to 19 above can be done in a single code block like this
-    // if (!(await createImageInsecure(response.imageUrl, 'server action'))) {
-    //   return { error: 'Image upload failed' };
-    // }
+    if (!(await createImageInsecure(response.imageUrl, 'server action'))) {
+      return { error: 'Image upload failed' };
+    }
 
     // revalidate the home page to display the new image that is returned from the database
     // revalidatePath('/');

@@ -7,7 +7,7 @@ export function SubmitButton({
   formAction,
 }: {
   buttonTitle: string;
-  formAction: (
+  formAction?: (
     formData: FormData,
   ) => Promise<{ error: string } | undefined> | void;
 }) {

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { SubmitButton } from '../Components/SubmitButton';
 import ErrorMessage from '../ErrorMessage';
 
 export default function ImageFormApi({
@@ -15,7 +16,13 @@ export default function ImageFormApi({
   const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
 
-  async function imageFormApiHandler(formData: FormData) {
+  async function imageFormApiHandler(event: {
+    preventDefault: () => void;
+    currentTarget: HTMLFormElement | undefined;
+  }) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
     const response = await fetch('images/api/upload', {
       method: 'POST',
       body: formData,
@@ -44,11 +51,7 @@ export default function ImageFormApi({
       {successMessage && <p className="text-green-600">{successMessage}</p>}
       <strong className="block mb-6">{formTitle}</strong>
       <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          const formData = new FormData(event.currentTarget);
-          imageFormApiHandler(formData);
-        }}
+        onSubmit={imageFormApiHandler}
         className="flex flex-col justify-center gap-6 max-w-sm mx-auto"
       >
         <label>
@@ -60,12 +63,7 @@ export default function ImageFormApi({
             accept="image/*"
           />
         </label>
-        <button
-          type="submit"
-          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        >
-          {buttonTitle}
-        </button>
+        <SubmitButton buttonTitle={buttonTitle} />
       </form>
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </div>

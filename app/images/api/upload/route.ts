@@ -16,7 +16,7 @@ export async function POST(
   try {
     const formData = await request.formData();
 
-    if (!formData) {
+    if (!formData.has('image')) {
       return NextResponse.json({ error: 'No image selected' });
     }
 

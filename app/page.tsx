@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { getImagesInsecure, getUsersInsecure } from '../database/queries';
 import ImageFormAction from './images/ImageFormAction';
 import ImageFormApi from './images/ImageFormApi';
+import UserFormAction from './users/UserFormAction';
 import UserFormApi from './users/UserFormApi';
 
 export default async function Home() {
@@ -47,14 +48,14 @@ export default async function Home() {
             buttonTitle="API Upload"
           />
 
-          <UserFormApi
+          <UserFormAction
             buttonTitle="Server Action Upload"
-            formTitle="Image with User data"
+            formTitle="Image with User data using server action"
           />
 
           <UserFormApi
             buttonTitle="API upload"
-            formTitle="Image with User data"
+            formTitle="Image with User data using API route"
           />
         </div>
         {/* Users profile info */}
