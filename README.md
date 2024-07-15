@@ -74,6 +74,19 @@ pnpm dev
 
 ### Open your browser and visit `http://localhost:3000`
 
+### UI
+
+#### Single image upload
+<img width="787" alt="Screenshot 2024-07-15 at 09 09 46" src="https://github.com/user-attachments/assets/1c3b71b3-2f8b-47ff-a97b-11e4ac0e3e9b">
+
+### User profile with image
+<img width="787" alt="Screenshot 2024-07-15 at 09 10 59" src="https://github.com/user-attachments/assets/2b819555-137a-4eb0-a284-18879381f017">
+
+### Error handling
+<img width="787" alt="Screenshot 2024-07-15 at 09 08 37" src="https://github.com/user-attachments/assets/e375c966-e2c3-45d2-8569-537435b6b586">
+
+
+
 ### Resources
 
 - [Cloudinary](https://cloudinary.com/documentation/upload_images)
