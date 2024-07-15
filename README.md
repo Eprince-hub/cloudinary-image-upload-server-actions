@@ -1,6 +1,6 @@
 # Cloudinary Image Upload Examples in Next.js
 
-This repository contains examples of how to upload images to Cloudinary in a Next.js application. The examples are based on the [Cloudinary documentation](https://cloudinary.com/documentation/upload_images) and the [Next.js documentation](https://nextjs.org/docs). The examples are written in TypeScript and it shows how you can upload images to Cloudinary using both `server action` and `API Route`.
+This repository contains examples of how to upload images to Cloudinary in a Next.js application. The examples are based on the [Cloudinary documentation](https://cloudinary.com/documentation/upload_images) and the [Next.js documentation](https://nextjs.org/docs). The examples are written in TypeScript and it shows how you can upload images to Cloudinary using `server actions`.
 
 ## Technologies
 
@@ -14,9 +14,7 @@ This repository contains examples of how to upload images to Cloudinary in a Nex
 ## Features
 
 - Upload image to Cloudinary using `server action`
-- Upload image to Cloudinary using `API Route`
 - Create user profile with image using `server action`
-- Create user profile with image using `API Route`
 - Return data from the `server action` and access the data in the client
 - Error handling in the `server action` and displaying the error message in the client
 - Display the uploaded image in the client
@@ -77,15 +75,16 @@ pnpm dev
 ### UI
 
 #### Single image upload
-<img width="787" alt="Screenshot 2024-07-15 at 09 09 46" src="https://github.com/user-attachments/assets/1c3b71b3-2f8b-47ff-a97b-11e4ac0e3e9b">
+
+<img width="1265" alt="Screenshot 2024-07-15 at 12 12 51" src="https://github.com/user-attachments/assets/ae0b51ce-a14b-4ab5-8ca5-99ae721c01ed">
 
 ### User profile with image
-<img width="787" alt="Screenshot 2024-07-15 at 09 10 59" src="https://github.com/user-attachments/assets/2b819555-137a-4eb0-a284-18879381f017">
+
+<img width="1265" alt="Screenshot 2024-07-15 at 12 12 38" src="https://github.com/user-attachments/assets/8af80031-e925-4bef-961f-314000b582f8">
 
 ### Error handling
-<img width="787" alt="Screenshot 2024-07-15 at 09 08 37" src="https://github.com/user-attachments/assets/e375c966-e2c3-45d2-8569-537435b6b586">
 
-
+<img width="815" alt="Screenshot 2024-07-15 at 12 08 11" src="https://github.com/user-attachments/assets/577a5dc0-b769-48f7-a151-ece38817042a">
 
 ### Resources
 

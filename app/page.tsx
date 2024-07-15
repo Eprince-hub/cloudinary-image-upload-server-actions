@@ -16,7 +16,7 @@ export default async function Home() {
         <div className="grid grid-cols-2 gap-6">
           {/* Display only images */}
           {images.length > 0 && (
-            <div className="self-center">
+            <div>
               <h2 className="text-2xl font-bold text-center">Images</h2>
               <ul className="grid grid-cols-6 gap-4 mt-4">
                 {images.map((image) => (
@@ -45,7 +45,7 @@ export default async function Home() {
         <div className="grid grid-cols-2 gap-6">
           {/* Users profile info */}
           {users.length > 0 && (
-            <div className="self-center">
+            <div>
               <h2 className="text-2xl font-bold text-center">Users</h2>
               <ul className="grid grid-cols-6 gap-4 mt-4">
                 {users.map((user) => (
