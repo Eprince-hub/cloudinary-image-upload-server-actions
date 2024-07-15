@@ -41,7 +41,7 @@ export default function ImageFormAction({
       <form
         // It can also be done with the action prop
         // action={formAction}
-        className="flex flex-col justify-center gap-6 max-w-sm mx-auto"
+        className="flex flex-col justify-center gap-6 max-w-sm"
       >
         <label>
           Select Image:

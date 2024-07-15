@@ -1,59 +1,43 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useFormState } from 'react-dom';
 import ErrorMessage from '../_components/ErrorMessage';
+import { SubmitButton } from '../_components/SubmitButton';
+import { createUser } from './action';
 
-export default function UserFormApi({
+export default function UserFormAction({
   buttonTitle,
   formTitle,
 }: {
   buttonTitle: string;
   formTitle: string;
 }) {
-  const [errorMessage, setErrorMessage] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [formData, setFormData] = useState<FormData>();
   const [successMessage, setSuccessMessage] = useState('');
+
+  const [state, formAction] = useFormState(
+    createUser.bind(null, { firstName, lastName, formData }),
+    null,
+  );
 
   const router = useRouter();
 
-  async function userFormApiHandler(formData: FormData) {
-    const response = await fetch('/api/register', {
-      method: 'POST',
-
-      // Using FormData API
-      body: formData,
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      setErrorMessage(errorData.error);
-      return;
+  useEffect(() => {
+    if (state && 'user' in state) {
+      setSuccessMessage('User created successfully');
+      router.refresh();
     }
-
-    const data = await response.json();
-
-    if (data.error) {
-      setErrorMessage(data.error);
-      return;
-    }
-
-    router.refresh();
-
-    setSuccessMessage('Image uploaded successfully');
-  }
+  }, [state?.user]);
 
   return (
     <div>
-      {!!successMessage && <p className="text-green-600">{successMessage}</p>}
+      {successMessage && <p className="text-green-600">{successMessage}</p>}
       <strong className="block mb-6">{formTitle}</strong>
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          const formData = new FormData(event.currentTarget);
-          await userFormApiHandler(formData);
-        }}
-        className="flex flex-col justify-center gap-3 max-w-sm mx-auto"
-      >
+      <form className="flex flex-col justify-center gap-3 max-w-sm">
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           First name
           <input
@@ -61,6 +45,7 @@ export default function UserFormApi({
             placeholder="John"
             required
             name="firstName"
+            onChange={(event) => setFirstName(event.currentTarget.value)}
           />
         </label>
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -70,9 +55,9 @@ export default function UserFormApi({
             placeholder="Doe"
             required
             name="lastName"
+            onChange={(event) => setLastName(event.currentTarget.value)}
           />
         </label>
-
         <label>
           Select Image:
           <input
@@ -80,13 +65,23 @@ export default function UserFormApi({
             type="file"
             name="image"
             accept="image/*"
+            onChange={(event) => {
+              const file = event.currentTarget.files?.[0];
+              const newFormData = new FormData();
+
+              if (file) {
+                newFormData.append('image', file);
+              }
+
+              setFormData(newFormData);
+            }}
           />
         </label>
-        <button className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
-          {buttonTitle}
-        </button>
+        <SubmitButton formAction={formAction} buttonTitle={buttonTitle} />
       </form>
-      {!!errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {state && 'error' in state && state.error ? (
+        <ErrorMessage>{state.error}</ErrorMessage>
+      ) : null}
     </div>
   );
 }

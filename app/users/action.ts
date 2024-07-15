@@ -4,7 +4,7 @@ import { createUserInsecure } from '../../database/queries';
 import { userSchema } from '../../migrations/00000-createTableUsers';
 import { cloudinaryUpload } from '../../util/cloudinaryUpload';
 
-type formDataProps = {
+type FormDataProps = {
   firstName: string;
   lastName: string;
   formData: FormData | undefined;
@@ -14,7 +14,7 @@ export async function createUser({
   firstName,
   lastName,
   formData,
-}: formDataProps) {
+}: FormDataProps) {
   // Another option is to accept only the formData
   // without the different state variables on the client
   // and extract the firstName and lastName from
@@ -31,7 +31,7 @@ export async function createUser({
   try {
     const response = await cloudinaryUpload(formData, 'server-action-images');
 
-    if (!response || !response.imageUrl) {
+    if (!response.imageUrl) {
       return { error: 'Image upload failed' };
     }
 

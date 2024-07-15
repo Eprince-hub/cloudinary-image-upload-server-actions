@@ -11,7 +11,7 @@ export async function uploadImage(formData: FormData) {
   try {
     const response = await cloudinaryUpload(formData, 'server-action-images');
 
-    if (!response || !response.imageUrl) {
+    if (!response.imageUrl) {
       return { error: 'Image upload failed' };
     }
 
