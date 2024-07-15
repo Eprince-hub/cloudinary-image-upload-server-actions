@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
-import { SubmitButton } from '../Components/SubmitButton';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../_components/ErrorMessage';
+import { SubmitButton } from '../_components/SubmitButton';
 import { createUser } from './action';
 
 export default function UserFormAction({

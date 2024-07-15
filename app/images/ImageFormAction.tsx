@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 import { Image } from '../../migrations/00001-createTableImages';
-import { SubmitButton } from '../Components/SubmitButton';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../_components/ErrorMessage';
+import { SubmitButton } from '../_components/SubmitButton';
 import { uploadImage } from './action';
 
 type ImageFormActionProps = { image: Image } | { error: string } | null;

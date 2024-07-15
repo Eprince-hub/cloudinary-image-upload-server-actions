@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../_components/ErrorMessage';
 
 export default function UserFormApi({
   buttonTitle,

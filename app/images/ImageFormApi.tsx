@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { SubmitButton } from '../Components/SubmitButton';
-import ErrorMessage from '../ErrorMessage';
+import ErrorMessage from '../_components/ErrorMessage';
+import { SubmitButton } from '../_components/SubmitButton';
 
 export default function ImageFormApi({
   buttonTitle,
