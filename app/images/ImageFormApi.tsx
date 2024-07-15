@@ -23,7 +23,7 @@ export default function ImageFormApi({
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    const response = await fetch('images/api/upload', {
+    const response = await fetch('/api/upload', {
       method: 'POST',
       body: formData,
     });

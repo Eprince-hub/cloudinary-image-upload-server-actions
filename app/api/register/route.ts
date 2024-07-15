@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createUserInsecure } from '../../../../database/queries';
-import {
-  User,
-  userSchema,
-} from '../../../../migrations/00000-createTableUsers';
-import { cloudinaryUpload } from '../../../../util/cloudinaryUpload';
+import { createUserInsecure } from '../../../database/queries';
+import { User, userSchema } from '../../../migrations/00000-createTableUsers';
+import { cloudinaryUpload } from '../../../util/cloudinaryUpload';
 
 export type UserRegisterPost =
   | {
@@ -20,13 +17,9 @@ export async function POST(
   try {
     const formData = await request.formData();
 
-    if (!formData) {
-      return NextResponse.json({ error: 'Missing required Data' });
-    }
-
     const response = await cloudinaryUpload(formData, 'server-action-images');
 
-    if (!response || !response.imageUrl) {
+    if (!response.imageUrl) {
       return NextResponse.json({ error: 'Image upload failed' });
     }
 
@@ -58,7 +51,7 @@ export async function POST(
     return NextResponse.json({ user });
   } catch (error) {
     return NextResponse.json({
-      error: 'Image upload failed',
+      error: (error as Error).message,
     });
   }
 }

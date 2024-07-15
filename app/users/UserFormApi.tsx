@@ -17,7 +17,7 @@ export default function UserFormApi({
   const router = useRouter();
 
   async function userFormApiHandler(formData: FormData) {
-    const response = await fetch('users/api/register', {
+    const response = await fetch('/api/register', {
       method: 'POST',
 
       // Using FormData API

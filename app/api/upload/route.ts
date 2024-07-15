@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createImageInsecure } from '../../../../database/queries';
-import { cloudinaryUpload } from '../../../../util/cloudinaryUpload';
+import { createImageInsecure } from '../../../database/queries';
+import { cloudinaryUpload } from '../../../util/cloudinaryUpload';
 
 export type ImageUploadResponsePost =
   | {
@@ -22,7 +22,7 @@ export async function POST(
 
     const response = await cloudinaryUpload(formData, 'server-action-images');
 
-    if (!response || !response.imageUrl) {
+    if (!response.imageUrl) {
       return NextResponse.json({ error: 'Image upload failed' });
     }
 
@@ -35,7 +35,7 @@ export async function POST(
     return NextResponse.json({ imageUrl: 'image.url' });
   } catch (error) {
     return NextResponse.json({
-      error: 'Image upload failed',
+      error: (error as Error).message,
     });
   }
 }
