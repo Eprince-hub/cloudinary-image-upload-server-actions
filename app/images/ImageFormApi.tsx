@@ -48,7 +48,7 @@ export default function ImageFormApi({
 
   return (
     <div>
-      {successMessage && <p className="text-green-600">{successMessage}</p>}
+      {!!successMessage && <p className="text-green-600">{successMessage}</p>}
       <strong className="block mb-6">{formTitle}</strong>
       <form
         onSubmit={imageFormApiHandler}
@@ -65,7 +65,7 @@ export default function ImageFormApi({
         </label>
         <SubmitButton buttonTitle={buttonTitle} />
       </form>
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {!!errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </div>
   );
 }
