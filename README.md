@@ -14,11 +14,9 @@ This repository contains examples of how to upload images to Cloudinary in a Nex
 ## Features
 
 - Upload image to Cloudinary using `server action`
-- Create user profile with image using `server action`
 - Return data from the `server action` and access the data in the client
 - Error handling in the `server action` and displaying the error message in the client
 - Display the uploaded image in the client
-- Display the user profile with image in the client
 
 ## Getting Started
 
@@ -74,17 +72,13 @@ pnpm dev
 
 ### UI
 
-#### Single image upload
+#### Uploaded image
 
-<img width="1265" alt="Screenshot 2024-07-15 at 12 12 51" src="https://github.com/user-attachments/assets/ae0b51ce-a14b-4ab5-8ca5-99ae721c01ed">
-
-### User profile with image
-
-<img width="1265" alt="Screenshot 2024-07-15 at 12 12 38" src="https://github.com/user-attachments/assets/8af80031-e925-4bef-961f-314000b582f8">
+<img width="931" alt="Screenshot 2024-07-16 at 13 15 15" src="https://github.com/user-attachments/assets/b3a1b6f3-9326-4ba3-bc7f-1fcc9849e53c">
 
 ### Error handling
 
-<img width="815" alt="Screenshot 2024-07-15 at 12 08 11" src="https://github.com/user-attachments/assets/577a5dc0-b769-48f7-a151-ece38817042a">
+<img width="931" alt="Screenshot 2024-07-16 at 13 14 01" src="https://github.com/user-attachments/assets/51353bad-8a45-44d6-90e4-4b678fb04eb8">
 
 ### Resources
 
