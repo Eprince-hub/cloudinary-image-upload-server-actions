@@ -12,7 +12,7 @@ export const imageSchema = z.object({
 
 export async function up(sql: Sql) {
   await sql`
-    CREATE TABLE images (
+    CREATE TABLE image_uploads (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
       url varchar(255) NOT NULL
     );
@@ -20,5 +20,5 @@ export async function up(sql: Sql) {
 }
 
 export async function down(sql: Sql) {
-  await sql`DROP TABLE images`;
+  await sql`DROP TABLE image_uploads`;
 }

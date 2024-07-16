@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
-import { Image } from '../../migrations/00001-createTableImages';
+import { Image } from '../../migrations/00001-createTableImageUploads';
 import ErrorMessage from '../_components/ErrorMessage';
 import { SubmitButton } from '../_components/SubmitButton';
 import { uploadImage } from './action';
