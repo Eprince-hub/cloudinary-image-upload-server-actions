@@ -4,7 +4,6 @@ import { z } from 'zod';
 export type Image = {
   id: number;
   url: string;
-  type: string;
 };
 
 export const imageSchema = z.object({
@@ -15,8 +14,7 @@ export async function up(sql: Sql) {
   await sql`
     CREATE TABLE images (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-      url varchar(255) NOT NULL,
-      type varchar(20) NOT NULL
+      url varchar(255) NOT NULL
     );
   `;
 }

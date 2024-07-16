@@ -11,14 +11,13 @@ export const getImagesInsecure = cache(async () => {
   `;
 });
 
-export const createImageInsecure = cache(async (url: string, type: string) => {
+export const createImageInsecure = cache(async (url: string) => {
   const [image] = await sql<Image[]>`
     INSERT INTO
-      images (url, type)
+      images (url)
     VALUES
       (
-        ${url},
-        ${type}
+        ${url}
       )
     RETURNING
       images.*

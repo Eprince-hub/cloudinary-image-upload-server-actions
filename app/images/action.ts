@@ -45,10 +45,7 @@ export async function uploadImage(formData: FormData) {
       return { error: 'Image upload failed' };
     }
 
-    const image = await createImageInsecure(
-      response.secure_url,
-      'server action',
-    );
+    const image = await createImageInsecure(response.secure_url);
 
     if (!image) {
       return { error: 'Image upload failed' };
