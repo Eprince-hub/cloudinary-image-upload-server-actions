@@ -19,7 +19,7 @@ export default async function Home() {
               <ul className="flex gap-4 flex-wrap my-4">
                 {images.map((image) => (
                   <li
-                    key={`user-${image.id}`}
+                    key={`image-${image.id}`}
                     className="flex items-center flex-col bg-teal-100 p-2 rounded-xl"
                   >
                     <Image
