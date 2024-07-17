@@ -12,7 +12,7 @@ export const getImagesInsecure = cache(async () => {
 });
 
 export const createImageInsecure = cache(async (url: string) => {
-  const [image] = await sql<Image[]>`
+  const [image] = await sql<Pick<Image, 'id'>[]>`
     INSERT INTO
       image_uploads (url)
     VALUES
@@ -20,7 +20,7 @@ export const createImageInsecure = cache(async (url: string) => {
         ${url}
       )
     RETURNING
-      image_uploads.*
+      image_uploads.id
   `;
   return image;
 });

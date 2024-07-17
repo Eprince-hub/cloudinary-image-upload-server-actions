@@ -29,15 +29,12 @@ export default async function Home() {
                       width={40}
                       height={40}
                     />
-                    <span className="block text-sm text-center">
-                      {image.type}
-                    </span>
                   </li>
                 ))}
               </ul>
             </div>
           )}
-          <ImageForm formTitle="Upload Image" buttonTitle="Upload Image" />
+          <ImageForm formTitle="Upload Image" buttonTitle="Upload" />
         </div>
       </main>
     </div>

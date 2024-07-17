@@ -51,7 +51,7 @@ export async function uploadImage(formData: FormData) {
       return { error: 'Image upload failed' };
     }
 
-    return { image };
+    return { imageId: image.id };
   } catch (uploadError) {
     return { error: (uploadError as Error).message };
   }
