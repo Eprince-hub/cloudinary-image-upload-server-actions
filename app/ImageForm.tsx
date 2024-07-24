@@ -19,7 +19,6 @@ export default function ImageFormAction({
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [imageId, setImageId] = useState<number>();
-  const [fileData, setFileData] = useState<Blob>();
 
   const router = useRouter();
 
@@ -85,24 +84,12 @@ export default function ImageFormAction({
           type="file"
           name="image"
           accept="image/*"
-          onChange={(event) => {
-            if (event.target.files) {
-              setFileData(event.currentTarget.files?.[0]);
-            }
-          }}
         />
 
         <SubmitButton
           buttonStyle="h-7"
           buttonTitle={buttonTitle}
-          formAction={() => {
-            const formData = new FormData();
-            if (fileData) {
-              formData.append('image', fileData);
-            }
-
-            formAction(formData);
-          }}
+          formAction={formAction}
         />
       </form>
 
