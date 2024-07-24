@@ -18,7 +18,6 @@ export default function ImageFormAction({
 }) {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [imageId, setImageId] = useState<number>();
 
   const router = useRouter();
 
@@ -31,7 +30,7 @@ export default function ImageFormAction({
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!imageId) {
+    if (!state?.imageId) {
       return;
     }
 
@@ -39,7 +38,7 @@ export default function ImageFormAction({
     const response = await fetch('/api/<API Endpoint>', {
       method: 'POST',
       body: JSON.stringify({
-        imageId,
+        imageId: state.imageId,
         // Other state variables
       }),
     });
@@ -58,15 +57,8 @@ export default function ImageFormAction({
     }
 
     setSuccessMessage('Success');
-    setImageId(undefined);
     router.refresh();
   }
-
-  useEffect(() => {
-    if (state?.imageId) {
-      setImageId(state.imageId);
-    }
-  }, [state]);
 
   return (
     <div>
@@ -100,7 +92,7 @@ export default function ImageFormAction({
         <SubmitButton
           buttonTitle="Submit"
           buttonStyle="w-full my-4"
-          disabled={!imageId}
+          disabled={!state?.imageId}
         />
       </form>
       {state && 'error' in state && state.error ? (
