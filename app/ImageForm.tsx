@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
-import ErrorMessage from '../_components/ErrorMessage';
-import { SubmitButton } from '../_components/SubmitButton';
+import ErrorMessage from './_components/ErrorMessage';
+import { SubmitButton } from './_components/SubmitButton';
 import { uploadImage } from './actions';
 
 type ImageFormActionProps = { imageId: number } | { error: string } | null;

@@ -1,7 +1,7 @@
 'use server';
 
 import { v2 as cloudinary } from 'cloudinary';
-import { createImageInsecure } from '../../database/queries';
+import { createImageInsecure } from '../database/queries';
 
 type CloudinaryResponse = {
   secure_url: string;

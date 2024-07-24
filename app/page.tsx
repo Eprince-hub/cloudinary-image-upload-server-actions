@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { getImagesInsecure } from '../database/queries';
-import ImageForm from './images/ImageForm';
+import ImageForm from './ImageForm';
 
 export default async function Home() {
   const images = await getImagesInsecure();
