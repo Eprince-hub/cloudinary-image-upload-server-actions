@@ -24,7 +24,8 @@ export default function ImageFormAction({
   const router = useRouter();
 
   const [state, formAction] = useFormState(
-    (arg: ImageFormActionProps, formData: FormData) => uploadImage(formData),
+    (imageFormAction: ImageFormActionProps, formData: FormData) =>
+      uploadImage(formData),
     null,
   );
 
