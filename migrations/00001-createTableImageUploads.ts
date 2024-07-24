@@ -7,7 +7,7 @@ export type Image = {
 };
 
 export const imageSchema = z.object({
-  imageUrl: z.string().url(),
+  url: z.string().url(),
 });
 
 export async function up(sql: Sql) {
