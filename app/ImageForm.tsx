@@ -29,13 +29,18 @@ export default function ImageFormAction({
     null,
   );
 
-  async function handleSubmit(id: number) {
-    // TODO: Implement the API endpoint
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
+    if (!imageId) {
+      return;
+    }
+
+    // TODO: Implement the API endpoint
     const response = await fetch('/api/<API Endpoint>', {
       method: 'POST',
       body: JSON.stringify({
-        imageId: id,
+        imageId,
         // Other state variables
       }),
     });
@@ -103,14 +108,7 @@ export default function ImageFormAction({
 
       <form
         // API call with other state variables and imageId
-        onSubmit={async (event) => {
-          event.preventDefault();
-          if (!imageId) {
-            return;
-          }
-
-          await handleSubmit(imageId);
-        }}
+        onSubmit={handleSubmit}
       >
         <SubmitButton
           buttonTitle="Submit"
