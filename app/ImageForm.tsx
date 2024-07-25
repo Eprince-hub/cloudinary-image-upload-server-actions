@@ -96,9 +96,9 @@ export default function ImageFormAction({
           disabled={state.type !== 'success'}
         />
       </form>
-      {state && 'error' in state && state.error ? (
+      {state.type === 'error' && (
         <ErrorMessage>{errorMessage ? errorMessage : state.error}</ErrorMessage>
-      ) : null}
+      )}
     </div>
   );
 }
