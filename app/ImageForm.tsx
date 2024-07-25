@@ -7,6 +7,10 @@ import ErrorMessage from './_components/ErrorMessage';
 import { SubmitButton } from './_components/SubmitButton';
 import { ImageFormActionProps, uploadImage } from './actions';
 
+type ResponseError = {
+  error: string;
+};
+
 const initialState: ImageFormActionProps = {
   type: 'initial',
 };
@@ -41,15 +45,14 @@ export default function ImageFormAction({
     });
 
     if (!response.ok) {
-      const errorData: {
-        error: string;
-      } = await response.json();
+      const errorData: ResponseError = await response.json();
       setErrorMessage(errorData.error);
       return;
     }
 
     const data: {
       error?: string;
+      // Other data
     } = await response.json();
 
     if (data.error) {
