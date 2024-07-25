@@ -5,6 +5,14 @@ jobs:
   lint-and-check-types:
     name: Lint and check types
     runs-on: ubuntu-latest
+    env:
+      PGHOST: localhost
+      PGDATABASE: cloudinary_image_upload
+      PGUSERNAME: cloudinary_image_upload
+      PGPASSWORD: cloudinary_image_upload
+      CLOUDINARY_CLOUD_NAME: cloudinary_image_upload
+      CLOUDINARY_API_KEY: cloudinary_image_upload
+      CLOUDINARY_API_SECRET: cloudinary_image_upload
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
