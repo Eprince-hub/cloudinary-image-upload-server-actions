@@ -41,12 +41,16 @@ export default function ImageFormAction({
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData: {
+        error: string;
+      } = await response.json();
       setErrorMessage(errorData.error);
       return;
     }
 
-    const data = await response.json();
+    const data: {
+      error?: string;
+    } = await response.json();
 
     if (data.error) {
       setErrorMessage(data.error);
