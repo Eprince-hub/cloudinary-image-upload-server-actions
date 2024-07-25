@@ -1,13 +1,15 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useFormState } from 'react-dom';
 import ErrorMessage from './_components/ErrorMessage';
 import { SubmitButton } from './_components/SubmitButton';
-import { uploadImage } from './actions';
+import { ImageFormActionProps, uploadImage } from './actions';
 
-type ImageFormActionProps = { imageId: number } | { error: string } | null;
+const initialState: ImageFormActionProps = {
+  type: 'initial',
+};
 
 export default function ImageFormAction({
   buttonTitle,
@@ -18,19 +20,14 @@ export default function ImageFormAction({
 }) {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [state, formAction] = useFormState(uploadImage, initialState);
 
   const router = useRouter();
 
-  const [state, formAction] = useFormState(
-    (imageFormAction: ImageFormActionProps, formData: FormData) =>
-      uploadImage(formData),
-    null,
-  );
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!state?.imageId) {
+    if (state.type !== 'success') {
       return;
     }
 
@@ -92,7 +89,7 @@ export default function ImageFormAction({
         <SubmitButton
           buttonTitle="Submit"
           buttonStyle="w-full my-4"
-          disabled={!state?.imageId}
+          disabled={state.type !== 'success'}
         />
       </form>
       {state && 'error' in state && state.error ? (

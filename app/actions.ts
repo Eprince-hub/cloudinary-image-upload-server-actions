@@ -3,6 +3,11 @@
 import { v2 as cloudinary } from 'cloudinary';
 import { createImageInsecure } from '../database/queries';
 
+export type ImageFormActionProps =
+  | { type: 'initial' }
+  | { type: 'error'; error: string }
+  | { type: 'success'; imageId: number };
+
 type CloudinaryResponse = {
   secure_url: string;
 };
@@ -13,16 +18,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function uploadImage(formData: FormData) {
+export async function uploadImage(
+  previousState: ImageFormActionProps,
+  formData: FormData,
+): Promise<ImageFormActionProps> {
   if (!formData.has('image')) {
-    return { error: 'Please select an image' };
+    return { type: 'error', error: 'Please select an image' };
   }
 
   try {
     const file = formData.get('image') as File;
 
     if (file.size > 1024 * 1024 * 5) {
-      return { error: 'Image is too large' };
+      return { type: 'error', error: 'Image is too large' };
     }
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
@@ -42,17 +50,17 @@ export async function uploadImage(formData: FormData) {
     );
 
     if (!response) {
-      return { error: 'Image upload failed' };
+      return { type: 'error', error: 'Image upload failed' };
     }
 
     const image = await createImageInsecure(response.secure_url);
 
     if (!image) {
-      return { error: 'Image upload failed' };
+      return { type: 'error', error: 'Image upload failed' };
     }
 
-    return { imageId: image.id };
+    return { type: 'success', imageId: image.id };
   } catch (uploadError) {
-    return { error: (uploadError as Error).message };
+    return { type: 'error', error: (uploadError as Error).message };
   }
 }
