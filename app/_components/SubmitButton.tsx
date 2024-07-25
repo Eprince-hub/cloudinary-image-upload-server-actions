@@ -25,7 +25,7 @@ export function SubmitButton({
       disabled={disabled || pending}
       className={`flex justify-center items-center text-white focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:focus:ring-gray-700 dark:border-gray-700 ${buttonStyle} ${disabled ? 'bg-gray-500' : 'bg-gray-800 hover:bg-gray-900 dark:hover:bg-gray-700'}`}
     >
-      {pending ? 'Loading...' : buttonTitle}
+      {pending ? 'submitting...' : buttonTitle}
     </button>
   );
 }
