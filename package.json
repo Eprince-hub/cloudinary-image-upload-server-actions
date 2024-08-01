@@ -20,7 +20,7 @@
     "react-dom": "19.0.0-rc.0",
     "sass": "^1.77.8",
     "server-only": "^0.0.1",
-    "tsx": "^4.16.2",
+    "tsx": "^4.16.5",
     "zod": "^3.23.8"
   },
   "devDependencies": {
