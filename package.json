@@ -31,7 +31,7 @@
     "@types/react-dom": "^18.3.0",
     "eslint-config-upleveled": "^8.6.13",
     "libpg-query": "15.2.0-rc.deparse.3",
-    "postcss": "^8.4.40",
+    "postcss": "^8.4.43",
     "prettier": "^3.3.3",
     "prettier-plugin-embed": "^0.4.15",
     "prettier-plugin-sql": "^0.18.1",
