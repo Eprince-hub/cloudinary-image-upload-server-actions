@@ -29,7 +29,7 @@
     "@types/node": "^20.14.12",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "eslint-config-upleveled": "^8.6.13",
+    "eslint-config-upleveled": "^8.7.2",
     "libpg-query": "15.2.0-rc.deparse.3",
     "postcss": "^8.4.40",
     "prettier": "^3.3.3",
